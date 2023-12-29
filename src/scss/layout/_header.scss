@@ -1,0 +1,37 @@
+.a5eeb-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  height: 2.5rem;
+  margin-top: 0.5rem;
+  padding: 0.125rem 0.5rem;
+  background: #425f65;
+  border-bottom: 1px solid #385056;
+  border-top: 1px solid #385056;
+  box-shadow: 0 0 10px #2e4246 inset, 0 3px 5px rgba(0, 0, 0, 0.4);
+  overflow: visible;
+
+  &__image {
+    height: 5rem;
+    width: 5rem;
+    margin-top: 1.25rem;
+    object-fit: cover;
+    object-position: top;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(3px);
+    box-shadow: var(--outline-gold);
+    cursor: pointer;
+  }
+
+  &__subheader {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    height: 1.75rem;
+    margin-top: 0.25rem;
+    margin-left: 6.5rem;
+    font-size: 1rem;
+    font-family: var(--font-serif);
+    color: #7e7960;
+  }
+}

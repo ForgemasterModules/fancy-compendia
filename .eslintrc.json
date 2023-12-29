@@ -1,0 +1,46 @@
+{
+  "env": {
+    "shared-node-browser": true,
+    "es2021": true
+  },
+  "extends": ["airbnb-base", "airbnb-typescript/base", "@typhonjs-fvtt/eslint-config-foundry.js"],
+  "parserOptions": {
+    "ecmaVersion": 13,
+    "sourceType": "module",
+    "project": "./tsconfig.json"
+  },
+  "plugins": ["import", "svelte"],
+  "ignorePatterns": ["dist/**/*"],
+  "rules": {
+    "class-methods-use-this": "off",
+    "comma-dangle": ["error", "never"],
+    "@typescript-eslint/comma-dangle": ["error", "never"],
+    "@typescript-eslint/indent": "off",
+    "no-constant-binary-expression": ["error"],
+    "no-underscore-dangle": "off",
+    "import/no-unresolved": ["error", {
+      "ignore": ["^#runtime/.+", "^#standard/.+"]
+    }],
+    "import/extensions": ["error", "never"],
+    "no-use-before-define": ["error", { "functions": false, "classes": true }],
+    "no-param-reassign": [ "error", { "props": false }]
+  },
+  "globals": {
+    "$": "readonly",
+    "document": "readonly",
+    "PIXI": "readonly",
+    "window": "readonly",
+    "ActiveEffect": "readonly",
+    "DocumentSheetConfig": "readonly",
+    "MathTerm": "readonly",
+    "NumericTerm": "readonly",
+    "OperatorTerm": "readonly",
+    "ParentheticalTerm": "readonly",
+    "TooltipManager": "readonly"
+  },
+  "settings": {
+    "react": {
+      "version": "latest"
+    }
+  }
+}

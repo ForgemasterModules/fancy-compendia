@@ -1,0 +1,64 @@
+.a5eeb-list-item {
+  display: contents;
+  font-family: var(--font-serif);
+  cursor: pointer;
+
+  &::after {
+    content: "";
+    display: block;
+    width: 100%;
+    grid-column: 1 / -1;
+    border: solid transparent;
+    border-width: 0 0 1px;
+    border-image: linear-gradient(
+      90deg,
+      var(--item-border-color-start, #f1edea),
+      var(--item-border-color-end, hsl(27, 19%, 70%))
+    )
+      1 repeat;
+    background: var(--item-background, transparent);
+  }
+
+  &__delete-button {
+    background: transparent;
+    border: 0;
+    margin-right: 0.25rem;
+    padding: 0.25rem;
+    font-size: var(--font-size-md);
+    color: #7e7960;
+
+    transition: all 0.15s ease-in-out;
+
+    &:focus,
+    &:hover {
+      color: #191813;
+      transform: scale(1.1);
+      box-shadow: none;
+    }
+  }
+
+  &__image {
+    height: 2.5rem;
+    width: auto;
+    margin-block: 0.25rem;
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(2px);
+    border-radius: 3px;
+    box-shadow: var(--outline-gold);
+  }
+
+  &__name {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1rem;
+
+    &--encounter-element {
+      padding-block: 0.5rem;
+    }
+  }
+
+  &--template-actor {
+    cursor: initial;
+  }
+}

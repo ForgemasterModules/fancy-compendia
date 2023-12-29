@@ -1,0 +1,19 @@
+.a5e-sheet--encounter-builder {
+  min-height: 25rem;
+  min-width: 32rem;
+}
+
+.a5e-sheet--encounter-builder .window-content,
+.a5eeb-info-dialog .window-content {
+  height: 100%;
+  max-height: 90vh;
+  padding: 0;
+  overflow: hidden;
+  background-image: var(--application-background);
+  background-size: cover;
+}
+
+.a5e-sheet--encounter-builder .dialog-content {
+  height: 100%;
+  overflow: hidden;
+}

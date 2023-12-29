@@ -1,0 +1,33 @@
+.a5eeb-section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 0.5rem;
+  padding: 0.125rem 0.5rem;
+  font-family: var(--font-serif);
+  color: #f6f2eb;
+  border-bottom: 1px solid #385056;
+  border-top: 1px solid #385056;
+  box-shadow: inset 0 0 10px #2e4246, 0 3px 5px #0006;
+  border-radius: 3px;
+  background: #425f65;
+  font-size: 0.833rem;
+
+  &__button {
+    width: fit-content;
+    background: transparent;
+    padding: 0.125rem 0.5rem;
+    color: inherit;
+    transition: all 0.15s ease-in-out;
+
+    &:hover {
+      color: #fff;
+      transform: scale(1.2);
+      box-shadow: none;
+    }
+  }
+
+  &__heading {
+    white-space: nowrap;
+  }
+}
