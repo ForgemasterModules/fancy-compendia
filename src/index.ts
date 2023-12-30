@@ -1,9 +1,14 @@
 /* eslint-disable no-console */
 import './scss/main.scss';
 
-import setup from './hooks/setup';
+import ready from './hooks/ready';
 
 Hooks.once('setup', () => {
+  // Get settings ready
+
+});
+
+Hooks.once('ready', () => {
   console.log('Fancy Compendia | Setting up...');
-  setup();
+  ready();
 });
