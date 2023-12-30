@@ -39,16 +39,6 @@
     }
   ],
   "relationships": {
-    "systems": [
-      {
-        "id": "dnd5e",
-        "type": "system",
-        "manifest": "https://github.com/foundryvtt/dnd5e/blob/master/system.json",
-        "compatibility": {
-          "minimum": "2.4.1"
-        }
-      }
-    ]
   },
   "socket": false,
   "url": "https://github.com/NekroDarkmoon/fancy-compendia",
