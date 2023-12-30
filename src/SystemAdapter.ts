@@ -1,14 +1,30 @@
 /* eslint-disable no-continue */
 /* eslint-disable no-restricted-syntax */
+
+import type { SvelteComponent } from 'svelte';
+
 export interface FieldConfig {
   indexFields: string[];
-  component: any;
+  sheet: any;
+  listComponent: SvelteComponent;
+  filterComponent: SvelteComponent;
+  itemReducerGroups: Record<string, string>;
+  itemReducerTypeFilters: Record<string, any[]>;
+}
+
+export interface FilterConfig {
+  [key: string]: {
+    key: string;
+    type: 'array' | 'boolean' | 'range' | 'value';
+    subFilters?: Record<string, FilterConfig>;
+  };
 }
 
 export interface SystemAdapterConfig {
   systemId: string;
   fieldConfig: Record<string, FieldConfig>;
   packMapping: Record<string, string>;
+  filterConfig: Record<string, FilterConfig>;
 }
 
 export default class SystemAdapter {
@@ -47,11 +63,13 @@ export default class SystemAdapter {
       const type = this.packMapping[id];
       if (!type) continue;
 
-      const component = this.config[type]?.component ?? null;
+      const component = this.config[type]?.sheet ?? null;
       if (!component) continue;
 
       const fields = this.config[type]?.indexFields ?? [];
       if (!fields.length) continue;
+
+      console.log(`Fancy Compendia | Building index for ${id}`);
 
       pack.getIndex({ fields });
       pack.applicationClass = component;
