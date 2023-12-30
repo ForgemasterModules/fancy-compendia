@@ -1,8 +1,16 @@
 import type { SystemAdapterConfig } from '../SystemAdapter';
 
+import DND5ESpellCompendiumSheet from '../dialogs/dnd5e/DND5ESpellCompendiumSheet';
+
 const DND5EAdapter: SystemAdapterConfig = {
   systemId: 'dnd5e',
   fieldConfig: {
+    item: {
+      indexFields: [
+        'system.description.value'
+      ],
+      sheet: null
+    },
     spell: {
       indexFields: [
         'system.description.value',
@@ -10,7 +18,7 @@ const DND5EAdapter: SystemAdapterConfig = {
         'system.level',
         'system.school'
       ],
-      component: null
+      sheet: DND5ESpellCompendiumSheet
     }
   },
   packMapping: {
