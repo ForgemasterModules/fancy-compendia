@@ -108,7 +108,7 @@ const DND5EAdapter: SystemAdapterConfig = {
           key: 'system.level',
           type: 'value'
         },
-        primarySpellSchools: {
+        spellSchools: {
           key: 'system.school',
           type: 'value'
         },

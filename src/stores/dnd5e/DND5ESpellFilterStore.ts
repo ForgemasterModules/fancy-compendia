@@ -13,7 +13,7 @@ const DND5ESpellFilterStore = writable({
     exclusive: [],
     exclusiveMode: 0
   },
-  primarySpellSchools: {
+  spellSchools: {
     inclusive: [],
     inclusiveMode: 0,
     exclusive: [],

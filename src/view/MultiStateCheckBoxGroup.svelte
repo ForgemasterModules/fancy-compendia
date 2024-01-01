@@ -32,18 +32,7 @@
     const dispatch = createEventDispatcher();
 </script>
 
-<ul
-    class="
-        u-flex
-        u-flex-wrap
-        u-gap-sm
-        u-list-style-none
-        u-m-0
-        u-p-0
-        u-text-xs
-        u-w-full
-    "
->
+<ul>
     {#each options as [value, label]}
         <Tag
             active={selected[0].includes(value)}
@@ -65,6 +54,17 @@
 {/if}
 
 <style lang="scss">
+    ul {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.25rem;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        font-size: 0.694rem;
+        width: 100%;
+    }
+
     .hint {
         margin-top: 0.25rem;
         color: #555;

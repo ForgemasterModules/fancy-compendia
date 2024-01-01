@@ -50,8 +50,6 @@
     const dispatch = createEventDispatcher();
 
     $: setupGrouping(enableGrouping);
-    console.log(derived);
-    console.log(itemViewComponent);
 </script>
 
 <ul

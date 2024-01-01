@@ -19,37 +19,21 @@
     });
 
     const formSectionMap = [
-        // {
-        //     filterKey: "spellLists",
-        //     heading: "Spell Lists",
-        //     options: classSpellLists,
-        //     display: compendiumType === "spell",
-        // },
         {
             filterKey: "spellLevels",
             heading: "Spell Levels",
             options: spellLevels,
         },
         {
-            filterKey: "primarySpellSchools",
-            heading:
-                compendiumType === "spell"
-                    ? "Primary Spell Schools"
-                    : "Spell Schools",
-            options: spellSchools.primary,
-        },
-        {
-            filterKey: "secondarySpellSchools",
-            heading: "Secondary Spell Schools",
-            options: spellSchools.secondary,
-            display: compendiumType === "spell",
+            filterKey: "spellSchools",
+            heading: "Spell Schools",
+            options: spellSchools,
         },
         {
             filterKey: "miscellaneous",
             heading: "Miscellaneous",
             options: {
                 concentration: "Concentration",
-                rare: "Rare",
                 ritual: "Ritual",
             },
         },

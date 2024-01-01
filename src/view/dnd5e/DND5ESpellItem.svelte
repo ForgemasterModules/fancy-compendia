@@ -5,7 +5,6 @@
     import ImportButton from "../ImportButton.svelte";
 
     export let document;
-    console.log(document);
 
     function getSpellDetailsLabel(spell) {
         const { level, school } = spell.system;
