@@ -1,6 +1,15 @@
 /* eslint-disable no-continue */
 /* eslint-disable no-restricted-syntax */
 
+// TODO: Make this type more robust
+export interface FilterConfig {
+  [key: string]: {
+    key?: string;
+    type?: 'array' | 'boolean' | 'range' | 'value';
+    subFilters?: FilterConfig;
+  };
+}
+
 export interface FieldConfig {
   indexFields: string[];
   sheet: any;
@@ -9,21 +18,13 @@ export interface FieldConfig {
   itemReducerGroupKey: string;
   itemReducerGroupFilterValues: any[];
   itemReducerCategoryName: (value: string | number) => string;
-}
-
-export interface FilterConfig {
-  [key: string]: {
-    key: string;
-    type: 'array' | 'boolean' | 'range' | 'value';
-    subFilters?: Record<string, FilterConfig>;
-  };
+  filterConfig: FilterConfig;
 }
 
 export interface SystemAdapterConfig {
   systemId: string;
-  fieldConfig: Record<string, FieldConfig>;
+  config: Record<string, FieldConfig>;
   packMapping: Record<string, string>;
-  filterConfig: Record<string, FilterConfig>;
 }
 
 export default class SystemAdapter {
@@ -41,7 +42,7 @@ export default class SystemAdapter {
     }
 
     this.systemId = adapterConfig.systemId;
-    this.fieldConfig = adapterConfig.fieldConfig ?? {};
+    this.fieldConfig = adapterConfig.config ?? {};
     this.packMapping = adapterConfig.packMapping ?? {};
 
     this.getCustomMapping();

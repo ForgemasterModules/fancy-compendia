@@ -1,8 +1,8 @@
 <script>
     import { createEventDispatcher } from "svelte";
 
-    import FormSection from "../FormSection.svelte";
-    import MultiStateCheckBoxGroup from "../MultiStateCheckBoxGroup.svelte";
+    import FormSection from "./FormSection.svelte";
+    import MultiStateCheckBoxGroup from "./MultiStateCheckBoxGroup.svelte";
 
     export let filterKey;
     export let filterSelections;
