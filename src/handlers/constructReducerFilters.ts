@@ -2,15 +2,18 @@
 /* eslint-disable no-continue */
 /* eslint-disable no-restricted-syntax */
 
-function arrayFilter(key, value, mode) {
+import type { DynMapReducer } from "#runtime/svelte/store/reducer";
+import type { FilterConfig } from "../SystemAdapter";
+
+function arrayFilter(key: string, value: any, mode: 0 | 1): (doc: any) => boolean {
   if (mode) {
-    return (doc) => foundry.utils.getProperty(doc, key)?.includes(value);
+    return (doc: any) => foundry.utils.getProperty(doc, key)?.includes(value);
   }
 
-  return (doc) => !foundry.utils.getProperty(doc, key)?.includes(value);
+  return (doc: any) => !foundry.utils.getProperty(doc, key)?.includes(value);
 }
 
-function booleanFilter(key, mode) {
+function booleanFilter(key: string, mode: 0 | 1): (doc: any) => boolean {
   if (mode) {
     return (doc) => foundry.utils.getProperty(doc, key);
   }
@@ -18,14 +21,14 @@ function booleanFilter(key, mode) {
   return (doc) => !foundry.utils.getProperty(doc, key);
 }
 
-function rangeFilter(key, { min, max }) {
+function rangeFilter(key: string, { min, max }: { min: number, max: number }): (doc: any) => boolean {
   return (doc) => {
     const value = foundry.utils.getProperty(doc, key);
     return value >= min && value <= max;
   };
 }
 
-function valueFilter(key, value, mode) {
+function valueFilter(key: string, value: any, mode: 0 | 1): (doc: any) => boolean {
   if (mode) {
     // Intentionally using == instead of ===
     return (doc) => foundry.utils.getProperty(doc, key) == value;
@@ -35,15 +38,16 @@ function valueFilter(key, value, mode) {
   return (doc) => foundry.utils.getProperty(doc, key) != value;
 }
 
-export default function constructReducerFilters(reducer, filtersSelections, filterConfig) {
+export default function constructReducerFilters(reducer: DynMapReducer<string, any>, filtersSelections: any, filterConfig: FilterConfig) {
+  // @ts-ignore
   const prevFilters = [...reducer.filters].filter((f) => f.id !== 'searchFilter');
   reducer.filters.remove(...prevFilters);
 
   const filterCount = { and: 0, or: 0 };
 
   for (const [filterKey, filterData] of Object.entries(filtersSelections)) {
-    const andFilters = [];
-    const orFilters = [];
+    const andFilters: any[] = [];
+    const orFilters: any[] = [];
 
     const { key, type, subFilters } = filterConfig?.[filterKey] ?? {};
     if ((!key || !type) && !subFilters) continue;

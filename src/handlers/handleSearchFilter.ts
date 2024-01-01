@@ -1,13 +1,11 @@
 /* eslint-disable no-continue */
 /* eslint-disable no-restricted-syntax */
-import { DynReducerHelper } from '#runtime/svelte/store/reducer';
+import { DynMapReducer, DynReducerHelper } from '#runtime/svelte/store/reducer';
 
 /**
  * Adds a filter to a given reducer
- * @param {*} reducer
- * @returns {} searchInput
  */
-export function addSearchFilter(reducer, searchDescriptions = false) {
+export function addSearchFilter(reducer: DynMapReducer<string, any>, searchDescriptions = false) {
   reducer.filters.removeById('searchFilter');
 
   const queries = searchDescriptions ? ['name', 'system.description'] : 'name';
@@ -23,6 +21,6 @@ export function addSearchFilter(reducer, searchDescriptions = false) {
   return searchInput;
 }
 
-export function removeSearchFilter(reducer) {
+export function removeSearchFilter(reducer: DynMapReducer<string, any>) {
   reducer.filters.removeById('searchFilter');
 }
