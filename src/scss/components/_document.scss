@@ -1,17 +1,26 @@
-.a5efc-document {
+.fc-document {
+  position: relative;
   display: grid;
   grid-template-areas:
     "img name import"
     "img details import";
   grid-template-columns: max-content 1fr min-content;
+  gap: 0 0.5rem;
   align-items: center;
-  column-gap: 0.5rem;
   width: 100%;
-  padding: 0.125rem;
-  padding-right: 0.5rem;
-  border: 1px solid #ccc;
-  border-radius: 3px;
-  background: var(--item-background, rgba(0, 0, 0, 0.05));
+  padding: 0.125rem 0.5rem 0.125rem 0.125rem;
+  font-family: var(--fc-font-serif);
+  font-size: var(--fc-text-size-sm);
+  border: solid transparent;
+  border-width: 0 0 1px;
+  border-image: linear-gradient(
+    90deg,
+    var(--item-border-color-start, transparent) 0%,
+    var(--item-border-color-end, #d5cac1) 55%
+  )
+    1 repeat;
+  border-radius: 0;
+  background: linear-gradient(90deg, transparent, var(--item-background, transparent) 70%);
   cursor: pointer;
 
   &--spell {
@@ -20,34 +29,17 @@
     grid-template-columns: max-content 1fr max-content min-content;
   }
 
-  &__icon {
-    color: #888;
-    font-size: 0.833rem;
-  }
 
   &__image {
+    grid-area: img;
+    display: block;
     height: 2.25rem;
     width: 2.25rem;
-    aspect-ratio: 1/1;
-    grid-area: img;
+    object-fit: cover;
     border: 0;
   }
 
-  &__import-button {
-    grid-area: import;
-    margin: 0;
-    padding: 0.25rem;
-    color: #888;
-    background: transparent;
-    border: 0;
-    transition: all 0.15s ease-in-out;
 
-    &:hover {
-      color: #191813;
-      transform: scale(1.2);
-      box-shadow: none;
-    }
-  }
 
   &__name {
     display: flex;
@@ -62,6 +54,7 @@
   }
 
   &__details {
+    font-family: var(--fc-font-sans-serif);
     grid-area: details;
     line-height: 1;
     color: #666;
@@ -69,5 +62,10 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+  }
+
+  &__icon {
+    color: #888;
+    font-size: var(--fc-text-size-sm);
   }
 }

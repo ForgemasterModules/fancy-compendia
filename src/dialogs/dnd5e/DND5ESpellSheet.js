@@ -40,7 +40,7 @@ export default class DND5ESpellSheet extends SvelteApplication {
   static get defaultOptions() {
     // @ts-ignore
     return foundry.utils.mergeObject(super.defaultOptions, {
-      classes: ['a5efc-compendium-sheet'],
+      classes: ['fc-compendium-sheet'],
       minimizable: true,
       svelte: {
         target: document.body

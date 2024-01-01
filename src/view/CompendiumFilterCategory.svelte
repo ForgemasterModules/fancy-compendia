@@ -13,12 +13,12 @@
 </script>
 
 <FormSection --direction="column">
-    <header class="a5efc-filter-header">
-        <h3 class="a5efc-filter-heading">{heading}</h3>
+    <header class="fc-filter-header">
+        <h3 class="fc-filter-heading">{heading}</h3>
 
-        <div class="a5efc-filter-mode-button-wrapper">
+        <div class="fc-filter-mode-button-wrapper">
             <button
-                class="a5efc-filter-mode-button a5efc-filter-mode-button--inclusive"
+                class="fc-filter-mode-button fc-filter-mode-button--inclusive"
                 data-tooltip="Toggle Inclusive Filter Mode"
                 data-tooltip-direction="UP"
                 on:click={() =>
@@ -31,7 +31,7 @@
             </button>
 
             <button
-                class="a5efc-filter-mode-button a5efc-filter-mode-button--exclusive"
+                class="fc-filter-mode-button fc-filter-mode-button--exclusive"
                 data-tooltip="Toggle Exclusive Filter Mode"
                 data-tooltip-direction="UP"
                 on:click={() =>
@@ -57,7 +57,7 @@
 </FormSection>
 
 <style lang="scss">
-    .a5efc-filter-heading {
+    .fc-filter-heading {
         flex-shrink: 0;
         margin: 0;
         font-size: 0.833rem;
@@ -65,14 +65,14 @@
         border-bottom: 0;
     }
 
-    .a5efc-filter-header {
+    .fc-filter-header {
         display: flex;
         align-items: center;
         gap: 0.5rem;
         margin-bottom: 0.125rem;
     }
 
-    .a5efc-filter-mode-button {
+    .fc-filter-mode-button {
         justify-self: flex-end;
         width: fit-content;
         margin: 0;
@@ -100,7 +100,7 @@
         }
     }
 
-    .a5efc-filter-mode-button-wrapper {
+    .fc-filter-mode-button-wrapper {
         display: flex;
     }
 </style>

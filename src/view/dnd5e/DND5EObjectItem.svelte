@@ -59,7 +59,7 @@
 
 <!-- svelte-ignore a11y-click-events-have-key-events a11y-no-noninteractive-element-interactions -->
 <li
-    class="a5efc-document"
+    class="fc-document"
     draggable="true"
     on:click={async () => {
         const doc =
@@ -69,21 +69,21 @@
     }}
     on:dragstart={onDragStart}
 >
-    <img class="a5efc-document__image" src={document.img} alt={document.name} />
+    <img class="fc-document__image" src={document.img} alt={document.name} />
 
-    <h3 class="a5efc-document__name">
+    <h3 class="fc-document__name">
         {document.name}
 
         {#if document.system?.requiresAttunement}
             <i
-                class="a5efc-document__icon fa-solid fa-link"
+                class="fc-document__icon fa-solid fa-link"
                 data-tooltip="Requires Attunement"
                 data-tooltip-direction="UP"
             />
         {/if}
     </h3>
 
-    <span class="a5efc-document__details">
+    <span class="fc-document__details">
         {objectDetails}
     </span>
 

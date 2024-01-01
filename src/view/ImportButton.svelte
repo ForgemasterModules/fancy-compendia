@@ -7,7 +7,7 @@
 </script>
 
 <button
-    class="a5efc-document__import-button fa-solid fa-download"
+    class="fc-import-button fa-solid fa-download"
     data-tooltip={`Import ${document.name}`}
     data-tooltip-direction="UP"
     on:click|stopPropagation={async () => {

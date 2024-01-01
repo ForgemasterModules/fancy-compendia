@@ -126,8 +126,8 @@
 </script>
 
 <ApplicationShell bind:elementRoot>
-    <main class="a5efc-main-wrapper">
-        <div class="a5efc-search-field">
+    <main class="fc-main-wrapper">
+        <div class="fc-search-field">
             <TJSInput
                 input={searchInput}
                 --tjs-input-placeholder-color="#555"
@@ -137,8 +137,8 @@
 
             {#if tab === "items"}
                 <button
-                    class="a5efc-filter-button"
-                    class:a5efc-filter-button--active={includeDescriptions}
+                    class="fc-filter-button"
+                    class:fc-filter-button--active={includeDescriptions}
                     data-tooltip={includeDescriptions
                         ? "Exclude item descriptions in search"
                         : "Include item descriptions in search"}
@@ -146,12 +146,12 @@
                     on:click={() =>
                         (includeDescriptions = !includeDescriptions)}
                 >
-                    <i class="a5efc-filter-button__icon fa-solid fa-book" />
+                    <i class="fc-filter-button__icon fa-solid fa-book" />
                 </button>
 
                 <button
-                    class="a5efc-filter-button"
-                    class:a5efc-filter-button--active={enableGrouping}
+                    class="fc-filter-button"
+                    class:fc-filter-button--active={enableGrouping}
                     data-tooltip={enableGrouping
                         ? "Disable grouping of documents"
                         : "Enable grouping of documents"}
@@ -159,40 +159,40 @@
                     on:click={() => (enableGrouping = !enableGrouping)}
                 >
                     <i
-                        class="a5efc-filter-button__icon fa-solid fa-bars-staggered"
+                        class="fc-filter-button__icon fa-solid fa-bars-staggered"
                     />
                 </button>
 
                 {#if !customImporter}
                     <button
-                        class="a5efc-filter-button"
+                        class="fc-filter-button"
                         data-tooltip="Export {[...$reducer]
                             .length} Documents to Rolltable"
                         data-tooltip-direction="UP"
                         on:click={() => exportToRollTable()}
                     >
                         <i
-                            class="a5efc-filter-button__icon fa-solid fa-table-list"
+                            class="fc-filter-button__icon fa-solid fa-table-list"
                         />
                     </button>
                 {:else if compendiumType === "spell" || compendiumType === "maneuver"}
                     <button
-                        class="a5efc-filter-button"
+                        class="fc-filter-button"
                         data-tooltip="Export {[...$reducer]
                             .length} Documents to Actor"
                         data-tooltip-direction="UP"
                         on:click={() => exportToActor()}
                     >
                         <i
-                            class="a5efc-filter-button__icon fa-solid fa-download"
+                            class="fc-filter-button__icon fa-solid fa-download"
                         />
                     </button>
                 {/if}
             {/if}
 
             <button
-                class="a5efc-filter-button"
-                class:a5efc-filter-button--active={tab === "filters"}
+                class="fc-filter-button"
+                class:fc-filter-button--active={tab === "filters"}
                 data-tooltip={tab === "items"
                     ? "Open Filter Page"
                     : "Close Filter Page"}
@@ -201,7 +201,7 @@
                     tab = tab === "items" ? "filters" : "items";
                 }}
             >
-                <i class="a5efc-filter-button__icon fa-solid fa-filter" />
+                <i class="fc-filter-button__icon fa-solid fa-filter" />
             </button>
         </div>
 
@@ -214,7 +214,7 @@
         />
 
         {#if tab === "items"}
-            <footer class="a5efc-footer">
+            <footer class="fc-footer">
                 Showing {[...$reducer].length} of {[...document.index].length} items
             </footer>
         {/if}

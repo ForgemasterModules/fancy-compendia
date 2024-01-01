@@ -1,0 +1,15 @@
+.fc-import-button {
+  grid-area: import;
+  margin: 0;
+  padding: 0.25rem;
+  color: #888;
+  background: transparent;
+  border: 0;
+  transition: all 0.15s ease-in-out;
+
+  &:hover {
+    color: #191813;
+    transform: scale(1.2);
+    box-shadow: none;
+  }
+}

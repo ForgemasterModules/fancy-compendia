@@ -68,11 +68,11 @@
         return baseXp;
     }
 
-    function getImage(monster) {
+    function getImage() {
         const uuid = `Compendium.${collection.metadata.id}.${document._id}`;
         const art = game.dnd5e.moduleArt.map.get(uuid);
-        const img = monster?.img || art?.actor || art?.token;
-        return img;
+
+        return art?.actor || art?.token;
     }
 
     const collection = getContext("collection");
@@ -83,7 +83,7 @@
 
 <!-- svelte-ignore a11y-click-events-have-key-events a11y-no-noninteractive-element-interactions -->
 <li
-    class="a5efc-document"
+    class="fc-document"
     draggable="true"
     on:click={async () => {
         const doc =
@@ -94,24 +94,24 @@
     on:dragstart={onDragStart}
 >
     <img
-        class="a5efc-document__image"
-        src={getImage(document)}
+        class="fc-document__image"
+        src={document?.img || getImage(document)}
         alt={document?.name}
     />
 
-    <h3 class="a5efc-document__name">
+    <h3 class="fc-document__name">
         {document?.name}
 
         {#if document?.system?.details?.isSwarm}
             <i
-                class="a5efc-document__icon fa-solid fa-people-group"
+                class="fc-document__icon fa-solid fa-people-group"
                 data-tooltip="Swarm"
                 data-tooltip-direction="UP"
             />
         {/if}
     </h3>
 
-    <span class="a5efc-document__details">
+    <span class="fc-document__details">
         {monsterDetails}
     </span>
 

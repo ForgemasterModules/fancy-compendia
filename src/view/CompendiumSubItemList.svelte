@@ -5,7 +5,7 @@
 </script>
 
 {#if reducer.length}
-    <h3 class="a5efc-category-heading">
+    <h3 class="fc-category-heading">
         {name}
     </h3>
 
@@ -15,18 +15,14 @@
 {/if}
 
 <style>
-    .a5efc-category-heading {
-        display: flex;
-        align-items: center;
-        margin-block: 0;
-        padding: 0.25rem 0.5rem;
-        font-family: Signika, sans-serif;
-        font-size: 0.833rem;
-        line-height: 1;
+    .fc-category-heading {
+        padding: 0.125rem 0.5rem;
+        font-family: var(--fc-font-serif);
+        font-size: var(--fc-text-size-sm);
         color: #f6f2eb;
         background: #425f65;
-        border-bottom: none;
+        border: 1px solid #3e4240;
+        box-shadow: 0 0 10px #2e4246 inset;
         border-radius: 3px;
-        box-shadow: inset 0 0 10px #2e4246;
     }
 </style>

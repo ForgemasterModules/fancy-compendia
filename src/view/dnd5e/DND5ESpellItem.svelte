@@ -31,7 +31,7 @@
 
 <!-- svelte-ignore a11y-click-events-have-key-events a11y-no-noninteractive-element-interactions -->
 <li
-    class="a5efc-document a5efc-document--spell"
+    class="fc-document fc-document--spell"
     draggable="true"
     on:click={async () => {
         const doc =
@@ -41,13 +41,13 @@
     }}
     on:dragstart={onDragStart}
 >
-    <img class="a5efc-document__image" src={document.img} alt={document.name} />
+    <img class="fc-document__image" src={document.img} alt={document.name} />
 
-    <span class="a5efc-document__name">
+    <span class="fc-document__name">
         {document.name}
     </span>
 
-    <span class="a5efc-document__details">
+    <span class="fc-document__details">
         {spellDetails}
     </span>
 
@@ -114,7 +114,7 @@
         height: 1rem;
         width: 1rem;
         border-radius: 3px;
-        font-size: 0.694rem;
+        font-size: var(--fc-text-size-xxs);
         background: #c6c5bc;
     }
 
@@ -125,6 +125,7 @@
         grid-area: components;
         margin: 0 0.25rem;
         padding: 0;
+        font-family: var(--fc-font-sans-serif);
         list-style: none;
     }
 </style>

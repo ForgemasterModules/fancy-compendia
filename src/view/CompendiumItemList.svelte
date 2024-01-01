@@ -53,7 +53,7 @@
 </script>
 
 <ul
-    class="a5efc-document-list"
+    class="fc-document-list"
     transition:fade
     on:scroll={({ target }) =>
         dispatch(

@@ -13,7 +13,7 @@ export default class GenericDialog extends TJSDialog {
         props: { ...data }
       }
     }, {
-      classes: ['a5e-sheet'],
+      classes: ['fc-sheet'],
       width: options.width ?? 420
     });
 
