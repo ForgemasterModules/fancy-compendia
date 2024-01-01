@@ -154,6 +154,11 @@ const DND5EAdapter: SystemAdapterConfig = {
     'dnd5e.spells': 'spell',
     'dnd5e.items': 'object',
     'dnd5e.tradegoods': 'object'
+  },
+  autoMappingConfig: {
+    monster: ['npc'],
+    spell: ['spell'],
+    object: ['backpack', 'consumable', 'equipment', 'loot', 'tool', 'weapon']
   }
 };
 

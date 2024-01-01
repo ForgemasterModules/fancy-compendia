@@ -2,20 +2,13 @@
 import './scss/main.scss';
 
 import ready from './hooks/ready';
+import setup from './hooks/setup';
 
 Hooks.once('setup', () => {
-  // Get settings ready
-  game.settings.register('fancy-compendia', 'customPackMappings', {
-    name: 'Custom Pack Mappings',
-    hint: 'Custom mappings for packs that are not automatically detected',
-    scope: 'world',
-    config: true,
-    type: Object,
-    default: {}
-  });
+  setup();
 });
 
 Hooks.once('ready', () => {
-  console.log('Fancy Compendia | Setting up...');
+  console.log('Fancy Compendia | Preparing System Adapter...');
   ready();
 });

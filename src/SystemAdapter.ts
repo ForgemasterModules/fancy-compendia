@@ -25,6 +25,7 @@ export interface SystemAdapterConfig {
   systemId: string;
   config: Record<string, FieldConfig>;
   packMapping: Record<string, string>;
+  autoMappingConfig: Record<string, string[]>;
 }
 
 export default class SystemAdapter {
@@ -36,6 +37,8 @@ export default class SystemAdapter {
 
   packMapping: Record<string, string>;
 
+  autoMappingConfig: Record<string, string[]>;
+
   constructor(adapterConfig: SystemAdapterConfig) {
     if (game.system.id !== adapterConfig.systemId) {
       throw new Error('SystemAdapter must be initialized with the correct systemId');
@@ -44,11 +47,44 @@ export default class SystemAdapter {
     this.systemId = adapterConfig.systemId;
     this.fieldConfig = adapterConfig.config ?? {};
     this.packMapping = adapterConfig.packMapping ?? {};
+    this.autoMappingConfig = adapterConfig.autoMappingConfig ?? {};
 
+    if (game.settings.get('fancy-compendia', 'autoApplyFancySheets')) this.getAutoMapping();
     this.getCustomMapping();
     this.buildIndexes();
 
     this.ready = true;
+  }
+
+  getAutoMapping(): void {
+    const definedMapping = this.packMapping;
+    const autoMaps: Record<string, string> = {};
+
+    for (const pack of game.packs) {
+      const id = pack.metadata.id || pack.collection;
+      if (definedMapping[id]) continue;
+
+      const documentType = pack.metadata.type;
+      if (!documentType) continue;
+
+      const sampleDocs = [...pack.index].slice(0, 5).map((doc) => doc?.type);
+      for (const [type, ids] of Object.entries(this.autoMappingConfig)) {
+        // Check if all the sample docs are in the list of ids
+        if (!sampleDocs.every((doc) => ids.includes(doc))) continue;
+        autoMaps[id] = type;
+      }
+    }
+
+    this.packMapping = foundry.utils.mergeObject(this.packMapping, autoMaps);
+
+    // For future UseCases add these to the custom mappings
+    if (!Object.keys(autoMaps).length) return;
+    const customMappings: Record<string, string> = game.settings.get('fancy-compendia', 'customPackMappings');
+    game.settings.set(
+      'fancy-compendia',
+      'customPackMappings',
+      foundry.utils.mergeObject(customMappings, autoMaps)
+    );
   }
 
   getCustomMapping(): void {
