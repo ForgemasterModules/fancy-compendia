@@ -63,8 +63,8 @@ export default class SystemAdapter {
       const type = foundry.utils.getProperty(this.packMapping, id);
       if (!type) continue;
 
-      const Component = this.fieldConfig[type]?.sheet ?? null;
-      if (!Component) continue;
+      const SvelteDialog = this.fieldConfig[type]?.sheet ?? null;
+      if (!SvelteDialog) continue;
 
       const fields = this.fieldConfig[type]?.indexFields ?? [];
       if (!fields.length) continue;
@@ -73,8 +73,8 @@ export default class SystemAdapter {
       console.log(`Fancy Compendia | Building index for ${id}`);
 
       pack.getIndex({ fields });
-      pack.applicationClass = Component;
-      pack.apps = [new Component({ collection: pack }, {})]
+      pack.applicationClass = SvelteDialog;
+      pack.apps = [new SvelteDialog({ collection: pack }, {})]
     }
   }
 
