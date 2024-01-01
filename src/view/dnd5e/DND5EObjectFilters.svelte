@@ -1,9 +1,9 @@
 <script>
     import { getContext } from "svelte";
 
-    import CompendiumFilterCategory from "./CompendiumFilterCategory.svelte";
+    import CompendiumFilterCategory from "../CompendiumFilterCategory.svelte";
 
-    import constructReducerFilters from "../handlers/constructReducerFilters";
+    import constructReducerFilters from "../../handlers/constructReducerFilters";
 
     export let compendiumType = "magicItem";
 

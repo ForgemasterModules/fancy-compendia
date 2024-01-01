@@ -2,25 +2,32 @@
 /* eslint-disable no-param-reassign */
 import type { SystemAdapterConfig } from '../SystemAdapter';
 
+import DND5EObjectSheet from '../dialogs/dnd5e/DND5EObjectSheet';
 import DND5EMonsterSheet from '../dialogs/dnd5e/DND5EMonsterSheet';
 import DND5ESpellSheet from '../dialogs/dnd5e/DND5ESpellSheet';
 
+import DND5EObjectFilters from '../view/dnd5e/DND5EObjectFilters.svelte';
 import DND5EMonsterFilters from '../view/dnd5e/DND5EMonsterFilters.svelte';
 import DND5ESpellFilters from '../view/dnd5e/DND5ESpellFilters.svelte';
 
+import DND5EObjectItem from '../view/dnd5e/DND5EObjectItem.svelte';
 import DND5EMonsterItem from '../view/dnd5e/DND5EMonsterItem.svelte';
 import DND5ESpellItem from '../view/dnd5e/DND5ESpellItem.svelte';
 
 const DND5EAdapter: SystemAdapterConfig = {
   systemId: 'dnd5e',
   config: {
-    item: {
+    object: {
       indexFields: [
-        'system.description.value'
+        'system.description.value',
+        'system.rarity',
+        'system.attunement',
+        'system.price',
+        'type'
       ],
-      sheet: null,
-      filterComponent: null,
-      listComponent: null,
+      sheet: DND5EObjectSheet,
+      filterComponent: DND5EObjectFilters,
+      listComponent: DND5EObjectItem,
       itemReducerGroupKey: 'system.rarity',
       itemReducerGroupFilterValues: ['', 'common', 'uncommon', 'rare', 'very rare', 'legendary', 'artifact'],
       itemReducerCategoryName: (rarity: string | number) => {
@@ -86,6 +93,14 @@ const DND5EAdapter: SystemAdapterConfig = {
         creatureTypes: {
           key: 'system.details.type',
           type: 'value'
+        },
+        miscellaneous: {
+          subFilters: {
+            swarm: {
+              key: 'system.details.type.swarm',
+              type: 'boolean'
+            },
+          }
         }
       }
     },
@@ -137,8 +152,8 @@ const DND5EAdapter: SystemAdapterConfig = {
   packMapping: {
     'dnd5e.monsters': 'monster',
     'dnd5e.spells': 'spell',
-    'dnd5e.items': 'item',
-    'dnd5e.tradegoods': 'item'
+    'dnd5e.items': 'object',
+    'dnd5e.tradegoods': 'object'
   }
 };
 

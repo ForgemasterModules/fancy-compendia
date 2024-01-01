@@ -2,13 +2,13 @@
     import { getContext } from "svelte";
     import { localize } from "#runtime/svelte/helper";
 
-    import ImportButton from "./ImportButton.svelte";
+    import ImportButton from "../ImportButton.svelte";
 
     export let document;
 
     function getAttunementLabel(object) {
-        return object.system.requiresAttunement
-            ? localize("A5E.AttunementRequiredPrompt")
+        return object.system.attunement
+            ? localize("DND5E.AttunementRequired")
             : null;
     }
 
@@ -18,16 +18,18 @@
         const rarity = getRarityLabel(item);
 
         if (rarity) {
-            if (price && attunement)
-                return `${rarity} (${attunement}; Cost ${price})`;
-            if (price) return `${rarity} (Cost ${price})`;
+            if (price.value && attunement)
+                return `${rarity} (${attunement}; Cost ${price.value} ${price.denomination})`;
+            if (price.value)
+                return `${rarity} (Cost ${price.value} ${price.denomination})`;
             if (attunement) return `${rarity} (${attunement})`;
 
             return rarity;
         }
 
-        if (price && attunement) return `${attunement}; Cost ${price}`;
-        if (price) return `Cost ${price}`;
+        if (price.value && attunement)
+            return `${attunement}; Cost ${price} ${price.denomination}`;
+        if (price.value) return `Cost ${price.value} ${price.denomination}`;
         if (attunement) return attunement;
 
         return null;
@@ -36,9 +38,9 @@
     function getRarityLabel(object) {
         const { rarity } = object.system;
 
-        if (!rarity || rarity === "mundane") return null;
+        if (!rarity) return null;
 
-        return itemRarity[rarity] ?? rarity;
+        return (itemRarity[rarity] ?? rarity).capitalize();
     }
 
     function onDragStart(event) {
@@ -50,7 +52,7 @@
     }
 
     const collection = getContext("collection");
-    const { itemRarity } = CONFIG.A5E;
+    const { itemRarity } = CONFIG.DND5E;
 
     $: objectDetails = getObjectDetailsLabel(document);
 </script>

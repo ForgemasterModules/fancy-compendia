@@ -1,7 +1,7 @@
 import { SvelteApplication } from '#runtime/svelte/application';
 
-import CompendiumSheetComponent from './view/CompendiumSheet.svelte';
-import MagicItemCompendiumFilterStore from "./stores/MagicItemCompendiumFilterStore";
+import CompendiumSheetComponent from '../../view/CompendiumSheet.svelte';
+import DND5EObjectFilterStore from "../../stores/dnd5e/DND5EObjectFilterStore";
 
 export default class MagicItemCompendiumSheet extends SvelteApplication {
   constructor(compendiumCollection, options = {}) {
@@ -15,9 +15,9 @@ export default class MagicItemCompendiumSheet extends SvelteApplication {
       svelte: {
         class: CompendiumSheetComponent,
         props: {
-          compendiumType: 'magicItem',
+          compendiumType: 'object',
           document: null,
-          filterStore: MagicItemCompendiumFilterStore
+          filterStore: DND5EObjectFilterStore,
         }
       }
     }));
