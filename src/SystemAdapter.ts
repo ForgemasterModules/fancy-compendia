@@ -60,7 +60,7 @@ export default class SystemAdapter {
     for (const pack of game.packs) {
       const id = pack.metadata.id || pack.collection;
 
-      const type = this.packMapping[id];
+      const type = foundry.utils.getProperty(this.packMapping, id);
       if (!type) continue;
 
       const component = this.fieldConfig[type]?.sheet ?? null;

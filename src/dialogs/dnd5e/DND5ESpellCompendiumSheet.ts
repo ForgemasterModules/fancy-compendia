@@ -10,6 +10,8 @@ export default class DND5ESpellCompendiumSheet extends SvelteApplication {
 
   constructor(compendiumCollection: any, options: any = {}) {
     const { collection } = compendiumCollection;
+    console.error(collection);
+
 
     super(foundry.utils.mergeObject(options, {
       id: 'collection.metadata.package',
