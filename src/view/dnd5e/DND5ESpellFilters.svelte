@@ -10,7 +10,7 @@
     const Adapter = getContext("adapter");
     const filterStore = getContext("filterStore");
     const reducer = getContext("reducer");
-    const { classSpellLists, spellLevels, spellSchools } = CONFIG.A5E;
+    const { classSpellLists, spellLevels, spellSchools } = CONFIG.DND5E;
 
     let filterSelections = {};
 
@@ -19,12 +19,12 @@
     });
 
     const formSectionMap = [
-        {
-            filterKey: "spellLists",
-            heading: "Spell Lists",
-            options: classSpellLists,
-            display: compendiumType === "spell",
-        },
+        // {
+        //     filterKey: "spellLists",
+        //     heading: "Spell Lists",
+        //     options: classSpellLists,
+        //     display: compendiumType === "spell",
+        // },
         {
             filterKey: "spellLevels",
             heading: "Spell Levels",

@@ -63,8 +63,8 @@ export default class SystemAdapter {
       const type = foundry.utils.getProperty(this.packMapping, id);
       if (!type) continue;
 
-      const component = this.fieldConfig[type]?.sheet ?? null;
-      if (!component) continue;
+      const Component = this.fieldConfig[type]?.sheet ?? null;
+      if (!Component) continue;
 
       const fields = this.fieldConfig[type]?.indexFields ?? [];
       if (!fields.length) continue;
@@ -73,7 +73,8 @@ export default class SystemAdapter {
       console.log(`Fancy Compendia | Building index for ${id}`);
 
       pack.getIndex({ fields });
-      pack.applicationClass = component;
+      pack.applicationClass = Component;
+      pack.apps = [new Component({ collection: pack }, {})]
     }
   }
 
@@ -91,6 +92,8 @@ export default class SystemAdapter {
   }
 
   getItemListComponent(compendiaType: string): any {
+    console.log(compendiaType);
+
     return this.fieldConfig[compendiaType]?.listComponent;
   }
 

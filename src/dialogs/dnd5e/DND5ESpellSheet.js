@@ -3,15 +3,10 @@ import { SvelteApplication } from '#runtime/svelte/application';
 import CompendiumSheetComponent from '../../view/CompendiumSheet.svelte';
 import DND5ESpellFilterStore from '../../stores/dnd5e/DND5ESpellFilterStore';
 
-export default class DND5ESpellCompendiumSheet extends SvelteApplication {
-  compendiumCollection: any;
+export default class DND5ESpellSheet extends SvelteApplication {
 
-  options: any;
-
-  constructor(compendiumCollection: any, options: any = {}) {
+  constructor(compendiumCollection, options = {}) {
     const { collection } = compendiumCollection;
-    console.error(collection);
-
 
     super(foundry.utils.mergeObject(options, {
       id: 'collection.metadata.package',
@@ -22,7 +17,7 @@ export default class DND5ESpellCompendiumSheet extends SvelteApplication {
       svelte: {
         class: CompendiumSheetComponent,
         props: {
-          compendiumType: '5eSpell',
+          compendiumType: 'spell',
           customImporter: options.importer ?? null,
           document: null,
           filterStore: DND5ESpellFilterStore

@@ -2,7 +2,7 @@
 /* eslint-disable no-param-reassign */
 import type { SystemAdapterConfig } from '../SystemAdapter';
 
-import DND5ESpellCompendiumSheet from '../dialogs/dnd5e/DND5ESpellCompendiumSheet';
+import DND5ESpellSheet from '../dialogs/dnd5e/DND5ESpellSheet';
 import DND5ESpellFilters from '../view/dnd5e/DND5ESpellFilters.svelte';
 import Dnd5ESpellItem from '../view/dnd5e/DND5ESpellItem.svelte';
 
@@ -90,7 +90,7 @@ const DND5EAdapter: SystemAdapterConfig = {
         'system.level',
         'system.school'
       ],
-      sheet: DND5ESpellCompendiumSheet,
+      sheet: DND5ESpellSheet,
       filterComponent: DND5ESpellFilters,
       listComponent: Dnd5ESpellItem,
       itemReducerGroupKey: 'system.level',

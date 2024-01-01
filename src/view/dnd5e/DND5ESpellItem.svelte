@@ -5,26 +5,28 @@
     import ImportButton from "../ImportButton.svelte";
 
     export let document;
+    console.log(document);
 
     function getSpellDetailsLabel(spell) {
-        const { level, schools } = spell.system;
-        const spellLevel = spellLevels[level] ?? "";
+        //     const { level, schools } = spell.system;
+        //     const spellLevel = spellLevels[level] ?? "";
 
-        const primarySchool =
-            spellSchools.primary[schools.primary] ?? schools.primary;
+        //     const primarySchool =
+        //         spellSchools.primary[schools.primary] ?? schools.primary;
 
-        const secondarySchools = schools.secondary.map(
-            (school) => spellSchools.secondary[school] ?? school,
-        );
+        //     const secondarySchools = schools.secondary.map(
+        //         (school) => spellSchools.secondary[school] ?? school,
+        //     );
 
-        secondarySchools.sort((a, b) => a.localeCompare(b));
+        //     secondarySchools.sort((a, b) => a.localeCompare(b));
 
-        const spellSchoolsLabel = [primarySchool, ...secondarySchools].join(
-            ", ",
-        );
+        //     const spellSchoolsLabel = [primarySchool, ...secondarySchools].join(
+        //         ", ",
+        //     );
 
-        if (spellSchoolsLabel) return `${spellLevel} (${spellSchoolsLabel})`;
-        return spellLevel;
+        //     if (spellSchoolsLabel) return `${spellLevel} (${spellSchoolsLabel})`;
+        //     return spellLevel;
+        return "";
     }
 
     function onDragStart(event) {
@@ -36,7 +38,7 @@
     }
 
     const collection = getContext("collection");
-    const { spellSchools, spellLevels } = CONFIG.A5E;
+    const { spellSchools, spellLevels } = CONFIG.DND5E;
 
     $: spellDetails = getSpellDetailsLabel(document);
 </script>
@@ -57,14 +59,6 @@
 
     <span class="a5efc-document__name">
         {document.name}
-
-        {#if document.system.rare}
-            <i
-                class="a5efc-document__icon fa-solid fa-sun"
-                data-tooltip="Rare Spell Variant"
-                data-tooltip-direction="UP"
-            />
-        {/if}
     </span>
 
     <span class="a5efc-document__details">
@@ -72,53 +66,53 @@
     </span>
 
     <ul class="component-wrapper">
-        {#if document.system.components.vocalized}
+        {#if document.system.components.vocal}
             <span
                 class="component"
-                data-tooltip="A5E.SpellComponentVocalized"
+                data-tooltip="DND5E.ComponentVerbal"
                 data-tooltip-direction="UP"
             >
-                {localize("A5E.SpellComponentVocalizedAbbr")}
+                {localize("DND5E.ComponentVerbalAbbr")}
             </span>
         {/if}
 
-        {#if document.system.components.seen}
+        {#if document.system.components.somatic}
             <span
                 class="component"
-                data-tooltip="A5E.SpellComponentSeen"
+                data-tooltip="DND5E.ComponentSomatic"
                 data-tooltip-direction="UP"
             >
-                {localize("A5E.SpellComponentSeenAbbr")}
+                {localize("DND5E.ComponentSomaticAbbr")}
             </span>
         {/if}
 
         {#if document.system.components.material}
             <span
                 class="component"
-                data-tooltip="A5E.SpellComponentMaterial"
+                data-tooltip="DND5E.ComponentMaterial"
                 data-tooltip-direction="UP"
             >
-                {localize("A5E.SpellComponentMaterialAbbr")}
+                {localize("DND5E.ComponentMaterialAbbr")}
             </span>
         {/if}
 
-        {#if document.system.concentration}
+        {#if document.system.components.concentration}
             <span
                 class="component"
-                data-tooltip="A5E.SpellConcentration"
+                data-tooltip="DND5E.Concentration"
                 data-tooltip-direction="UP"
             >
-                {localize("A5E.SpellConcentrationAbbr")}
+                {localize("DND5E.ConcentrationAbbr")}
             </span>
         {/if}
 
-        {#if document.system.ritual}
+        {#if document.system.components.ritual}
             <span
                 class="component"
-                data-tooltip="A5E.SpellRitual"
+                data-tooltip="DND5E.Ritual"
                 data-tooltip-direction="UP"
             >
-                {localize("A5E.SpellRitualAbbr")}
+                {localize("DND5E.RitualAbbr")}
             </span>
         {/if}
     </ul>

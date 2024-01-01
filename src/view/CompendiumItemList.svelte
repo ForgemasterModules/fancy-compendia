@@ -11,7 +11,8 @@
     const Adapter = getContext("adapter");
     const itemViewComponent = Adapter.getItemListComponent(compendiumType);
     const reducerGroupKey = Adapter.getReducerGroupKey(compendiumType);
-    const reducerFilterValues = Adapter.getReducerFilterValues(compendiumType);
+    const reducerFilterValues =
+        Adapter.getReducerGroupFilterValues(compendiumType);
 
     const reducer = getContext("reducer");
     let derived = [];
@@ -49,6 +50,8 @@
     const dispatch = createEventDispatcher();
 
     $: setupGrouping(enableGrouping);
+    console.log(derived);
+    console.log(itemViewComponent);
 </script>
 
 <ul
