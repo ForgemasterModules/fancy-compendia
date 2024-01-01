@@ -67,7 +67,7 @@ const DND5EAdapter: SystemAdapterConfig = {
         ...Array.from(Array(30).keys(), (n) => (n + 1))
       ],
       itemReducerCategoryName: (cr: string | number) => {
-        if (!cr) return '?';
+        if (cr === undefined || cr === null) return '?';
         if (cr == 0.125) return 'CR ⅛';
         if (cr == 0.25) return 'CR ¼';
         if (cr == 0.5) return 'CR ½';
@@ -83,7 +83,7 @@ const DND5EAdapter: SystemAdapterConfig = {
           key: 'system.traits.size',
           type: 'value'
         },
-        creatureType: {
+        creatureTypes: {
           key: 'system.details.type',
           type: 'value'
         }

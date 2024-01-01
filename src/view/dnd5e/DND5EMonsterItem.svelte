@@ -68,6 +68,13 @@
         return baseXp;
     }
 
+    function getImage(monster) {
+        const uuid = `Compendium.${collection.metadata.id}.${document._id}`;
+        const art = game.dnd5e.moduleArt.map.get(uuid);
+        const img = monster?.img || art?.actor || art?.token;
+        return img;
+    }
+
     const collection = getContext("collection");
     const { actorSizes, creatureTypes } = CONFIG.DND5E;
 
@@ -88,7 +95,7 @@
 >
     <img
         class="a5efc-document__image"
-        src={document?.img}
+        src={getImage(document)}
         alt={document?.name}
     />
 

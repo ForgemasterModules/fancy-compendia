@@ -7,12 +7,18 @@
 
     import constructReducerFilters from "../../handlers/constructReducerFilters";
 
-    export const compendiumType = "maneuver";
+    export const compendiumType = "monster";
 
     const Adapter = getContext("adapter");
     const filterStore = getContext("filterStore");
     const reducer = getContext("reducer");
-    const { actorSizes, creatureTypes } = CONFIG.A5E;
+    const { actorSizes, creatureTypes } = CONFIG.DND5E;
+
+    let filterSelections = {};
+
+    filterStore.subscribe((store) => {
+        filterSelections = store;
+    });
 
     function getChallengeRatingRangeLabel({ cr }) {
         const { min, max } = cr;
@@ -48,12 +54,6 @@
             },
         },
     ];
-
-    let filterSelections = {};
-
-    filterStore.subscribe((store) => {
-        filterSelections = store;
-    });
 
     $: crRangeLabel = getChallengeRatingRangeLabel(filterSelections);
 
