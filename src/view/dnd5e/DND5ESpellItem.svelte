@@ -8,25 +8,12 @@
     console.log(document);
 
     function getSpellDetailsLabel(spell) {
-        //     const { level, schools } = spell.system;
-        //     const spellLevel = spellLevels[level] ?? "";
+        const { level, school } = spell.system;
+        const spellLevel = spellLevels[level] ?? "";
+        const spellSchoolsLabel = spellSchools[school] ?? school;
 
-        //     const primarySchool =
-        //         spellSchools.primary[schools.primary] ?? schools.primary;
-
-        //     const secondarySchools = schools.secondary.map(
-        //         (school) => spellSchools.secondary[school] ?? school,
-        //     );
-
-        //     secondarySchools.sort((a, b) => a.localeCompare(b));
-
-        //     const spellSchoolsLabel = [primarySchool, ...secondarySchools].join(
-        //         ", ",
-        //     );
-
-        //     if (spellSchoolsLabel) return `${spellLevel} (${spellSchoolsLabel})`;
-        //     return spellLevel;
-        return "";
+        if (spellSchoolsLabel) return `${spellLevel} (${spellSchoolsLabel})`;
+        return spellLevel;
     }
 
     function onDragStart(event) {
