@@ -87,7 +87,11 @@ export default () =>
 
   plugins: [
     svelte({
-      preprocess: preprocess()
+      preprocess: preprocess({
+        scss: {
+          prependData: '@import "src/scss/base/_variables.scss";'
+        }
+      })
     }),
 
     resolve(s_RESOLVE_CONFIG) // Necessary when bundling npm-linked packages.
