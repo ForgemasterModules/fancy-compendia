@@ -5,12 +5,20 @@
 
     import constructReducerFilters from "../../handlers/constructReducerFilters";
 
-    export let compendiumType = "magicItem";
+    export let compendiumType = "object";
 
     const Adapter = getContext("adapter");
     const filterStore = getContext("filterStore");
     const reducer = getContext("reducer");
-    const { itemRarity, objectTypes } = CONFIG.A5E;
+    const { itemRarity } = CONFIG.DND5E;
+    const objectTypes = {
+        backpack: "TYPES.Item.backpack",
+        consumable: "TYPES.Item.consumable",
+        equipment: "TYPES.Item.equipment",
+        loot: "TYPES.Item.loot",
+        tool: "TYPES.Item.tool",
+        weapon: "TYPES.Item.weapon",
+    };
 
     function getFormSections() {
         const formSectionMap = [
@@ -23,25 +31,15 @@
                 filterKey: "rarity",
                 heading: "Item Rarity",
                 options: itemRarity,
-                display: compendiumType === "magicItem",
             },
             {
                 filterKey: "miscellaneous",
                 heading: "Miscellaneous",
                 options: {
-                    bulky: "Bulky",
+                    attunement: "Attunement Required",
                 },
             },
         ];
-
-        if (compendiumType === "magicItem") {
-            const miscellaneousSection = formSectionMap.find(
-                (filterSection) => filterSection.filterKey === "miscellaneous",
-            );
-
-            miscellaneousSection.options.requiresAttunement =
-                "Requires Attunement";
-        }
 
         return formSectionMap;
     }
