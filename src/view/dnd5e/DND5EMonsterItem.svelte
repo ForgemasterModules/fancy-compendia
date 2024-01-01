@@ -1,18 +1,10 @@
 <script>
     import { getContext } from "svelte";
+    import { localize } from "#runtime/svelte/helper";
 
-    import ImportButton from "./ImportButton.svelte";
+    import ImportButton from "../ImportButton.svelte";
 
     export let document;
-
-    function getCreatureTypes(monster) {
-        return (monster?.system?.details?.creatureTypes ?? [])
-            .map((creatureType) => {
-                return creatureTypes[creatureType] ?? creatureType ?? "";
-            })
-            .sort((a, b) => a.localeCompare(b))
-            .join(", ");
-    }
 
     function getCRLabel(monster) {
         let cr = monster?.system?.details?.cr;
@@ -29,19 +21,19 @@
         const components = [];
 
         const cr = getCRLabel(monster);
-        const creatureTypes = getCreatureTypes(monster);
-        const isElite = monster?.system?.details?.elite;
+        const creatureType = localize(
+            creatureTypes[monster?.system?.details?.type?.value],
+        );
         const sizeCategory = actorSizes[monster?.system?.traits?.size] ?? "";
         const xp = prepareXP(monster);
 
         if (cr === "?") {
-            components.push(sizeCategory, creatureTypes);
+            components.push(sizeCategory, creatureType);
         } else {
             components.push(
                 sizeCategory,
-                creatureTypes,
+                creatureType,
                 "|",
-                isElite ? "Elite" : "",
                 `CR ${cr}`,
                 `(${xp} XP)`,
             );
@@ -65,17 +57,19 @@
 
     function prepareXP(monster) {
         const cr = parseFloat(monster?.system?.details?.cr || 0);
-        let baseXp = 0;
-        if (cr === 0.125) baseXp = CONFIG.A5E.CR_EXP_LEVELS["1/8"];
-        else if (cr === 0.25) baseXp = CONFIG.A5E.CR_EXP_LEVELS["1/4"];
-        else if (cr === 0.5) baseXp = CONFIG.A5E.CR_EXP_LEVELS["1/2"];
-        else baseXp = CONFIG.A5E.CR_EXP_LEVELS[parseInt(cr, 10) > 30 ? 30 : cr];
+        let baseXp = 10;
+        if (cr === 0.125) baseXp = 25;
+        else if (cr === 0.25) baseXp = 50;
+        else if (cr === 0.5) baseXp = 100;
+        else
+            baseXp =
+                CONFIG.DND5E.CR_EXP_LEVELS[parseInt(cr, 10) > 30 ? 30 : cr];
 
-        return monster?.system?.details?.elite ? baseXp * 2 : baseXp;
+        return baseXp;
     }
 
     const collection = getContext("collection");
-    const { actorSizes, creatureTypes } = CONFIG.A5E;
+    const { actorSizes, creatureTypes } = CONFIG.DND5E;
 
     $: monsterDetails = getMonsterDetailsLabel(document);
 </script>
@@ -100,14 +94,6 @@
 
     <h3 class="a5efc-document__name">
         {document?.name}
-
-        {#if document?.system?.details?.elite}
-            <i
-                class="a5efc-document__icon fa-solid fa-skull"
-                data-tooltip="Elite Monster"
-                data-tooltip-direction="UP"
-            />
-        {/if}
 
         {#if document?.system?.details?.isSwarm}
             <i

@@ -2,9 +2,14 @@
 /* eslint-disable no-param-reassign */
 import type { SystemAdapterConfig } from '../SystemAdapter';
 
+import DND5EMonsterSheet from '../dialogs/dnd5e/DND5EMonsterSheet';
 import DND5ESpellSheet from '../dialogs/dnd5e/DND5ESpellSheet';
+
+import DND5EMonsterFilters from '../view/dnd5e/DND5EMonsterFilters.svelte';
 import DND5ESpellFilters from '../view/dnd5e/DND5ESpellFilters.svelte';
-import Dnd5ESpellItem from '../view/dnd5e/DND5ESpellItem.svelte';
+
+import DND5EMonsterItem from '../view/dnd5e/DND5EMonsterItem.svelte';
+import DND5ESpellItem from '../view/dnd5e/DND5ESpellItem.svelte';
 
 const DND5EAdapter: SystemAdapterConfig = {
   systemId: 'dnd5e',
@@ -47,11 +52,12 @@ const DND5EAdapter: SystemAdapterConfig = {
       indexFields: [
         'system.details.cr',
         'system.traits.size',
-        'system.details.type'
+        'system.details.type.value',
+        'system.details.type.swarm'
       ],
-      sheet: null,
-      filterComponent: null,
-      listComponent: null,
+      sheet: DND5EMonsterSheet,
+      filterComponent: DND5EMonsterFilters,
+      listComponent: DND5EMonsterItem,
       itemReducerGroupKey: 'system.details.cr',
       itemReducerGroupFilterValues: [
         0,
@@ -61,6 +67,7 @@ const DND5EAdapter: SystemAdapterConfig = {
         ...Array.from(Array(30).keys(), (n) => (n + 1))
       ],
       itemReducerCategoryName: (cr: string | number) => {
+        if (!cr) return '?';
         if (cr == 0.125) return 'CR ⅛';
         if (cr == 0.25) return 'CR ¼';
         if (cr == 0.5) return 'CR ½';
@@ -70,7 +77,7 @@ const DND5EAdapter: SystemAdapterConfig = {
       filterConfig: {
         cr: {
           key: 'system.details.cr',
-          type: 'value'
+          type: 'range'
         },
         creatureSize: {
           key: 'system.traits.size',
@@ -92,7 +99,7 @@ const DND5EAdapter: SystemAdapterConfig = {
       ],
       sheet: DND5ESpellSheet,
       filterComponent: DND5ESpellFilters,
-      listComponent: Dnd5ESpellItem,
+      listComponent: DND5ESpellItem,
       itemReducerGroupKey: 'system.level',
       itemReducerGroupFilterValues: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
       itemReducerCategoryName: (level: string | number) => {

@@ -1,14 +1,15 @@
 <script>
     import { getContext } from "svelte";
 
-    import CompendiumFilterCategory from "./CompendiumFilterCategory.svelte";
-    import FormSection from "./FormSection.svelte";
+    import CompendiumFilterCategory from "../CompendiumFilterCategory.svelte";
+    import FormSection from "../FormSection.svelte";
     import RangeSlider from "svelte-range-slider-pips";
 
-    import constructReducerFilters from "../handlers/constructReducerFilters";
+    import constructReducerFilters from "../../handlers/constructReducerFilters";
 
     export const compendiumType = "maneuver";
 
+    const Adapter = getContext("adapter");
     const filterStore = getContext("filterStore");
     const reducer = getContext("reducer");
     const { actorSizes, creatureTypes } = CONFIG.A5E;
@@ -43,7 +44,6 @@
             filterKey: "miscellaneous",
             heading: "Miscellaneous",
             options: {
-                elite: "Elite",
                 swarm: "Swarm",
             },
         },
@@ -60,7 +60,7 @@
     $: filterCount = constructReducerFilters(
         reducer,
         filterSelections,
-        "monsters"
+        Adapter.getFilterConfig(compendiumType),
     );
 </script>
 

@@ -1,7 +1,7 @@
 import { SvelteApplication } from '#runtime/svelte/application';
 
-import CompendiumSheetComponent from './view/CompendiumSheet.svelte';
-import MonsterFilterStore from "./stores/MonsterFilterStore";
+import CompendiumSheetComponent from '../../view/CompendiumSheet.svelte';
+import MonsterFilterStore from "../../stores/dnd5e/DND5EMonsterFilterStore";
 
 export default class MonsterCompendiumSheet extends SvelteApplication {
   constructor(compendiumCollection, options = {}) {
