@@ -1,15 +1,13 @@
 /* eslint-disable no-continue */
 /* eslint-disable no-restricted-syntax */
 
-import type { SvelteComponent } from 'svelte';
-
 export interface FieldConfig {
   indexFields: string[];
   sheet: any;
-  listComponent: SvelteComponent;
-  filterComponent: SvelteComponent;
-  itemReducerGroups: Record<string, string>;
-  itemReducerTypeFilters: Record<string, any[]>;
+  filterComponent: any;
+  listComponent: any;
+  itemReducerGroupKey: string;
+  itemReducerGroupFilterValues: any[];
 }
 
 export interface FilterConfig {
@@ -32,7 +30,7 @@ export default class SystemAdapter {
 
   systemId: string;
 
-  config: Record<string, FieldConfig>;
+  fieldConfig: Record<string, FieldConfig>;
 
   packMapping: Record<string, string>;
 
@@ -42,7 +40,7 @@ export default class SystemAdapter {
     }
 
     this.systemId = adapterConfig.systemId;
-    this.config = adapterConfig.fieldConfig ?? {};
+    this.fieldConfig = adapterConfig.fieldConfig ?? {};
     this.packMapping = adapterConfig.packMapping ?? {};
 
     this.getCustomMapping();
@@ -63,10 +61,10 @@ export default class SystemAdapter {
       const type = this.packMapping[id];
       if (!type) continue;
 
-      const component = this.config[type]?.sheet ?? null;
+      const component = this.fieldConfig[type]?.sheet ?? null;
       if (!component) continue;
 
-      const fields = this.config[type]?.indexFields ?? [];
+      const fields = this.fieldConfig[type]?.indexFields ?? [];
       if (!fields.length) continue;
 
       // eslint-disable-next-line no-console
@@ -75,5 +73,10 @@ export default class SystemAdapter {
       pack.getIndex({ fields });
       pack.applicationClass = component;
     }
+  }
+
+  // External API
+  getFilterComponent(compendiaType: string): any {
+    return this.fieldConfig[compendiaType]?.filterComponent;
   }
 }

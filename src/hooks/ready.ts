@@ -11,4 +11,9 @@ export default async function ready() {
   if (!Adapter) {
     throw new Error('Fancy Compendia | System not supported');
   }
+
+  // Add adapter instance
+  CONFIG.FancyCompendia = {
+    SystemAdapter: Adapter
+  };
 }

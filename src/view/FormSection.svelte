@@ -39,13 +39,12 @@
         margin: var(--margin, 0);
         padding: var(--padding, 0.5rem);
         background: var(--background, rgba(0, 0, 0, 0.05));
-        border: var(--border, none);
-        border-radius: $border-radius-standard;
+        border-radius: 3px;
     }
 
     .form-heading {
-        font-size: var(--label-size, $font-size-sm);
-        font-weight: var(--label-weight, bold);
+        font-size: 0.833rem;
+        font-weight: bold;
         flex-shrink: 1;
         width: var(--label-width, auto);
         border-bottom: 0;
@@ -57,11 +56,11 @@
         display: block;
         width: 100%;
         padding-right: 0.25rem;
-        font-family: $font-secondary;
-        font-size: $font-size-xs;
+        font-family: "Signika", sans-serif;
+        font-size: 0.694rem;
     }
 
     .warning {
-        color: $color-warning;
+        color: #8b6225;
     }
 </style>

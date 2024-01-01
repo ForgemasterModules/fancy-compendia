@@ -1,29 +1,16 @@
 <script>
+    import { getContext } from "svelte";
     import { fade } from "svelte/transition";
 
-    // TODO: Change this to support multiple systems
-    import CompendiumManeuverFilters from "./CompendiumManeuverFilters.svelte";
-    import CompendiumMonsterFilters from "./CompendiumMonsterFilters.svelte";
-    import CompendiumObjectFilters from "./CompendiumObjectFilters.svelte";
-    import CompendiumSpellFilters from "./CompendiumSpellFilters.svelte";
-
     export let compendiumType;
+    const Adapter = getContext("adapter");
+    console.log(Adapter);
 
-    const compendiumItemComponents = {
-        "5eSpell": CompendiumSpellFilters,
-        object: CompendiumObjectFilters,
-        magicItem: CompendiumObjectFilters,
-        maneuver: CompendiumManeuverFilters,
-        monster: CompendiumMonsterFilters,
-        spell: CompendiumSpellFilters,
-    };
+    const filterComponent = Adapter.getFilterComponent(compendiumType);
 </script>
 
 <section class="filter-page" transition:fade>
-    <svelte:component
-        this={compendiumItemComponents[compendiumType]}
-        {compendiumType}
-    />
+    <svelte:component this={filterComponent} {compendiumType} />
 </section>
 
 <style lang="scss">

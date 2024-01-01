@@ -9,8 +9,8 @@
 
     import GenericDialog from "../dialogs/GenericDialog";
 
-    import CompendiumFilters from "../components/compendiumSheets/CompendiumFilters.svelte";
-    import CompendiumItemList from "../components/compendiumSheets/CompendiumItemList.svelte";
+    import CompendiumFilters from "./CompendiumFilters.svelte";
+    import CompendiumItemList from "./CompendiumItemList.svelte";
     import ExportToRollTableDialog from "./ExportToRollTableDialog.svelte";
 
     import {
@@ -96,6 +96,7 @@
     setContext("customImporter", customImporter);
     setContext("filterStore", filterStore);
     setContext("reducer", reducer);
+    setContext("adapter", CONFIG.FancyCompendia.SystemAdapter);
 
     const reducerUnsubscribe = reducer.subscribe(
         () => (visibleDocumentCount = 100),
