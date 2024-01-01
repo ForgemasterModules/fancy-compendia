@@ -36,7 +36,7 @@ export default class MagicItemCompendiumSheet extends SvelteApplication {
  */
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
-      classes: ['a5efc-compendium-sheet'],
+      classes: ['fc-compendium-sheet'],
       minimizable: true,
       svelte: {
         target: document.body
