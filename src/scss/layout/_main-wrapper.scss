@@ -1,0 +1,15 @@
+.a5efc-main-wrapper {
+  display: grid;
+  grid-template-areas:
+    "search"
+    "main";
+  grid-template-rows: 2rem 1fr;
+  grid-template-columns: 1fr;
+  gap: 0.25rem;
+  height: 100%;
+  padding: 0.5rem;
+  padding-right: 0.25rem;
+  padding-bottom: 0.25rem;
+  background: rgba(246, 242, 235, 0.5);
+  overflow: hidden;
+}
