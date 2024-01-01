@@ -1,3 +1,5 @@
+/* eslint-disable eqeqeq */
+/* eslint-disable no-param-reassign */
 import type { SystemAdapterConfig } from '../SystemAdapter';
 
 import DND5ESpellCompendiumSheet from '../dialogs/dnd5e/DND5ESpellCompendiumSheet';
@@ -15,8 +17,14 @@ const DND5EAdapter: SystemAdapterConfig = {
       filterComponent: null,
       listComponent: null,
       itemReducerGroupKey: 'system.rarity',
-      itemReducerGroupFilterValues: ['', 'common', 'uncommon', 'rare', 'very rare', 'legendary', 'artifact']
+      itemReducerGroupFilterValues: ['', 'common', 'uncommon', 'rare', 'very rare', 'legendary', 'artifact'],
+      itemReducerCategoryName: (rarity: string | number) => {
+        if (typeof rarity === 'number') rarity = rarity.toString();
+        if (rarity == '') return 'Common Items';
+        return `${rarity.capitalize()} Items`;
+      }
     },
+
     monster: {
       indexFields: [
         'system.details.cr'
@@ -31,7 +39,15 @@ const DND5EAdapter: SystemAdapterConfig = {
         '1/4',
         '1/2',
         ...Array.from(Array(30).keys(), (n) => (n + 1).toString())
-      ]
+      ],
+      itemReducerCategoryName: (cr: string | number) => {
+        if (cr == 0.125) return 'CR ⅛';
+        if (cr == 0.25) return 'CR ¼';
+        if (cr == 0.5) return 'CR ½';
+
+        return `CR ${cr}`;
+      }
+
     },
     spell: {
       indexFields: [
@@ -44,7 +60,15 @@ const DND5EAdapter: SystemAdapterConfig = {
       filterComponent: DND5ESpellFilters,
       listComponent: Dnd5ESpellItem,
       itemReducerGroupKey: 'system.level',
-      itemReducerGroupFilterValues: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+      itemReducerGroupFilterValues: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+      itemReducerCategoryName: (level: string | number) => {
+        if (level == 0) return 'Cantrips';
+        if (typeof level === 'string') level = parseInt(level, 10);
+        // @ts-ignore
+        level = Number.isNaN(level) ? (1).ordinalString() : level.ordinalString();
+
+        return `${level} Level Spells`;
+      }
     }
   },
   packMapping: {

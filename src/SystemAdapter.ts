@@ -8,6 +8,7 @@ export interface FieldConfig {
   listComponent: any;
   itemReducerGroupKey: string;
   itemReducerGroupFilterValues: any[];
+  itemReducerCategoryName: (value: string | number) => string;
 }
 
 export interface FilterConfig {
@@ -76,7 +77,23 @@ export default class SystemAdapter {
   }
 
   // External API
+  getCategoryName(compendiaType: string, value: string | number): string {
+    return this.fieldConfig[compendiaType]?.itemReducerCategoryName(value);
+  }
+
   getFilterComponent(compendiaType: string): any {
     return this.fieldConfig[compendiaType]?.filterComponent;
+  }
+
+  getItemListComponent(compendiaType: string): any {
+    return this.fieldConfig[compendiaType]?.listComponent;
+  }
+
+  getReducerGroupKey(compendiaType: string): string {
+    return this.fieldConfig[compendiaType]?.itemReducerGroupKey;
+  }
+
+  getReducerGroupFilterValues(compendiaType: string): any[] {
+    return this.fieldConfig[compendiaType]?.itemReducerGroupFilterValues;
   }
 }
