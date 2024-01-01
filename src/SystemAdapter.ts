@@ -69,6 +69,7 @@ export default class SystemAdapter {
       const fields = this.config[type]?.indexFields ?? [];
       if (!fields.length) continue;
 
+      // eslint-disable-next-line no-console
       console.log(`Fancy Compendia | Building index for ${id}`);
 
       pack.getIndex({ fields });

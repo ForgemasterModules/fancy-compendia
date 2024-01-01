@@ -5,12 +5,12 @@ import DND5ESpellCompendiumSheet from '../dialogs/dnd5e/DND5ESpellCompendiumShee
 const DND5EAdapter: SystemAdapterConfig = {
   systemId: 'dnd5e',
   fieldConfig: {
-    item: {
-      indexFields: [
-        'system.description.value'
-      ],
-      sheet: null
-    },
+    // item: {
+    //   indexFields: [
+    //     'system.description.value'
+    //   ],
+    //   sheet: null
+    // },
     spell: {
       indexFields: [
         'system.description.value',
