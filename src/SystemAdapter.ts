@@ -92,8 +92,6 @@ export default class SystemAdapter {
   }
 
   getItemListComponent(compendiaType: string): any {
-    console.log(compendiaType);
-
     return this.fieldConfig[compendiaType]?.listComponent;
   }
 
