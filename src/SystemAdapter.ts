@@ -86,6 +86,10 @@ export default class SystemAdapter {
     return this.fieldConfig[compendiaType]?.filterComponent;
   }
 
+  getFilterConfig(compendiaType: string): FilterConfig {
+    return this.fieldConfig[compendiaType]?.filterConfig;
+  }
+
   getItemListComponent(compendiaType: string): any {
     return this.fieldConfig[compendiaType]?.listComponent;
   }

@@ -86,6 +86,7 @@
     let includeDescriptions = false;
     let reducer = new DynMapReducer();
     let visibleDocumentCount = 100;
+    const Adapter = CONFIG.FancyCompendia.SystemAdapter;
 
     reducer.setData(getDocuments([...document.index]), true);
 
@@ -96,7 +97,7 @@
     setContext("customImporter", customImporter);
     setContext("filterStore", filterStore);
     setContext("reducer", reducer);
-    setContext("adapter", CONFIG.FancyCompendia.SystemAdapter);
+    setContext("adapter", Adapter);
 
     const reducerUnsubscribe = reducer.subscribe(
         () => (visibleDocumentCount = 100),
@@ -108,7 +109,11 @@
         filterSelections = store;
     });
 
-    $: constructReducerFilters(reducer, filterSelections, compendiumType);
+    $: constructReducerFilters(
+        reducer,
+        filterSelections,
+        Adapter.getFilterConfig(compendiumType),
+    );
 
     // On Destroy
     onDestroy(() => {

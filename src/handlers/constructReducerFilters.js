@@ -1,121 +1,6 @@
+/* eslint-disable eqeqeq */
 /* eslint-disable no-continue */
 /* eslint-disable no-restricted-syntax */
-
-const spellsFilterConfig = {
-  spellLists: {
-    key: 'system.classes',
-    type: 'array'
-  },
-  spellLevels: {
-    key: 'system.level',
-    type: 'value'
-  },
-  primarySpellSchools: {
-    key: 'system.schools.primary',
-    type: 'value'
-  },
-  secondarySpellSchools: {
-    key: 'system.schools.secondary',
-    type: 'array'
-  },
-  miscellaneous: {
-    subFilters: {
-      concentration: {
-        key: 'system.concentration',
-        type: 'boolean'
-      },
-      ritual: {
-        key: 'system.ritual',
-        type: 'boolean'
-      },
-      rare: {
-        key: 'system.rare',
-        type: 'boolean'
-      }
-    }
-  }
-};
-
-const maneuverFilterConfig = {
-  exertion: {
-    key: 'system.exertionCost',
-    type: 'range'
-  },
-  maneuverDegrees: {
-    key: 'system.degree',
-    type: 'value'
-  },
-  maneuverTraditions: {
-    key: 'system.tradition',
-    type: 'value'
-  },
-  miscellaneous: {
-    subFilters: {
-      stance: {
-        key: 'system.isStance',
-        type: 'boolean'
-      }
-    }
-  }
-};
-
-const monstersFilterConfig = {
-  cr: {
-    key: 'system.details.cr',
-    type: 'range'
-  },
-  creatureSize: {
-    key: 'system.traits.size',
-    type: 'value'
-  },
-  creatureTypes: {
-    key: 'system.details.creatureTypes',
-    type: 'array'
-  },
-  miscellaneous: {
-    subFilters: {
-      elite: {
-        key: 'system.details.elite',
-        type: 'boolean'
-      },
-      swarm: {
-        key: 'system.details.isSwarm',
-        type: 'boolean'
-      }
-    }
-  }
-};
-
-const objectFilterConfig = {
-  objectType: {
-    key: 'system.objectType',
-    type: 'value'
-  },
-  rarity: {
-    key: 'system.rarity',
-    type: 'value'
-  },
-  miscellaneous: {
-    subFilters: {
-      bulky: {
-        key: 'system.bulky',
-        type: 'boolean'
-      },
-      requiresAttunement: {
-        key: 'system.requiresAttunement',
-        type: 'boolean'
-      }
-    }
-  }
-};
-
-const typeMap = {
-  spells: spellsFilterConfig,
-  magicItem: objectFilterConfig,
-  maneuvers: maneuverFilterConfig,
-  monsters: monstersFilterConfig,
-  object: objectFilterConfig
-};
 
 function arrayFilter(key, value, mode) {
   if (mode) {
@@ -150,11 +35,10 @@ function valueFilter(key, value, mode) {
   return (doc) => foundry.utils.getProperty(doc, key) != value;
 }
 
-export default function constructReducerFilters(reducer, filtersSelections, type) {
+export default function constructReducerFilters(reducer, filtersSelections, filterConfig) {
   const prevFilters = [...reducer.filters].filter((f) => f.id !== 'searchFilter');
   reducer.filters.remove(...prevFilters);
 
-  const filterConfig = typeMap[type];
   const filterCount = { and: 0, or: 0 };
 
   for (const [filterKey, filterData] of Object.entries(filtersSelections)) {

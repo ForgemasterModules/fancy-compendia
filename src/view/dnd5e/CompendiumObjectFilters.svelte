@@ -7,6 +7,7 @@
 
     export let compendiumType = "magicItem";
 
+    const Adapter = getContext("adapter");
     const filterStore = getContext("filterStore");
     const reducer = getContext("reducer");
     const { itemRarity, objectTypes } = CONFIG.A5E;
@@ -35,7 +36,7 @@
 
         if (compendiumType === "magicItem") {
             const miscellaneousSection = formSectionMap.find(
-                (filterSection) => filterSection.filterKey === "miscellaneous"
+                (filterSection) => filterSection.filterKey === "miscellaneous",
             );
 
             miscellaneousSection.options.requiresAttunement =
@@ -54,7 +55,7 @@
     $: filterCount = constructReducerFilters(
         reducer,
         filterSelections,
-        compendiumType
+        Adapter.getFilterConfig(compendiumType),
     );
 </script>
 

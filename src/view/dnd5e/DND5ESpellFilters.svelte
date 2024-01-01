@@ -7,6 +7,7 @@
 
     export let compendiumType = "spell";
 
+    const Adapter = getContext("adapter");
     const filterStore = getContext("filterStore");
     const reducer = getContext("reducer");
     const { classSpellLists, spellLevels, spellSchools } = CONFIG.A5E;
@@ -57,7 +58,7 @@
     $: filterCount = constructReducerFilters(
         reducer,
         filterSelections,
-        "spells",
+        Adapter.getFilterConfig(compendiumType),
     );
 </script>
 
