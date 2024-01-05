@@ -25,7 +25,7 @@ export interface SystemAdapterConfig {
   systemId: string;
   config: Record<string, FieldConfig>;
   packMapping: Record<string, string>;
-  autoMappingConfig: Record<string, string[]>;
+  autoMappingConfig: Record<string, string[] | string>;
 }
 
 export default class SystemAdapter {
@@ -37,7 +37,7 @@ export default class SystemAdapter {
 
   packMapping: Record<string, string>;
 
-  autoMappingConfig: Record<string, string[]>;
+  autoMappingConfig: Record<string, string[] | string>;
 
   constructor(adapterConfig: SystemAdapterConfig) {
     if (game.system.id !== adapterConfig.systemId) {
@@ -67,11 +67,17 @@ export default class SystemAdapter {
       const documentType = pack.metadata.type;
       if (!documentType) continue;
 
-      const sampleDocs = [...pack.index].slice(0, 5).map((doc) => doc?.type);
+      // Get type of all the documents in the pack
+      const docTypes = new Set<string>([...pack.index].map((doc) => doc?.type));
       for (const [type, ids] of Object.entries(this.autoMappingConfig)) {
-        // Check if all the sample docs are in the list of ids
-        if (!sampleDocs.every((doc) => ids.includes(doc))) continue;
-        autoMaps[id] = type;
+        if (typeof ids === 'string') {
+          if (docTypes.size !== 1) continue;
+          if (!docTypes.has(ids)) continue;
+          autoMaps[id] = type;
+        } else {
+          if (docTypes.difference(new Set(ids)).size) continue;
+          autoMaps[id] = type;
+        }
       }
     }
 

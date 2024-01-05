@@ -13,3 +13,7 @@ interface NumberConstructor {
 interface String {
   capitalize(): string;
 }
+
+interface Set<T> {
+  difference(set: Set<T>): Set<T>;
+}
