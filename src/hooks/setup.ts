@@ -1,10 +1,10 @@
 export default function setup() {
   game.settings.register("fancy-compendia", "autoApplyFancySheets", {
-    name: "Automatically apply fancy sheets",
-    hint: "Automatically apply fancy sheets to actors when they are created.",
+    name: "Automatically Apply Fancy Sheets to Compendia",
+    hint: "When enabled, the system will automatically apply the fancy sheet to all possible compendiums. This requires all documents in the compendium to be of the same type. These are only calculated once and stored in 'fancy-compendia.customPackMappings'.",
     scope: "world",
     config: true,
-    default: true,
+    default: false,
     type: Boolean,
   });
 
