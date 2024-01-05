@@ -49,7 +49,7 @@ jobs:
 
       # Create a zip file with all files required by the system to add to the release
       - name: Zip Files
-        run: zip -r ./fancy-compendia.zip module.json LICENCE.md index.js style.css lang/ assets/ README.md
+        run: zip -r ./fancy-compendia.zip module.json LICENCE.md index.js style.css lang/ assets/ fonts/ README.md
 
       # Create a release for this specific version
       - name: Update Release with Files
