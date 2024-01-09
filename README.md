@@ -2,6 +2,10 @@
 
 Fancy compendia is a semi-system agnostic module that overrides the core compendium sheets, adding more functionality and giving the sheets a visual makeover.
 
+![Supported Foundry Versions](https://img.shields.io/endpoint?url=https://foundryshields.com/version?url=https://github.com/ForgeMastermodules/fancy-compendia/releases/latest/download/system.json&color=blue)
+![Latest Release Download Count](https://img.shields.io/github/downloads/ForgeMastermodules/fancy-compendia/latest/fancy-compendia.zip)
+[![Forge Installs](https://img.shields.io/badge/dynamic/json?label=Forge%20Installs&query=package.installs&suffix=%25&url=https%3A%2F%2Fforge-vtt.com%2Fapi%2Fbazaar%2Fpackage%2Fa5e&colorB=brightgreen)](https://forge-vtt.com/bazaar#package=fancy-compendia)
+[![Discord](https://img.shields.io/discord/957965481455788032?label=A5e%20Foundry%20Discord)](https://discord.gg/XtkZ6RkN9E)
 
 ## Features
 
@@ -41,3 +45,5 @@ Another alternative way is via the `customPackMappings` setting. Something to no
 
 ## Funding
 If you'd like to support the development of this module, please consider becoming a patron. In addition to helping fund module development, patrons also get early access to exclusive modules. You can find our Patreon page below.
+
+[![Patreon](https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fshieldsio-patreon.vercel.app%2Fapi%3Fusername%3DForgemasterModules%26type%3Dpatrons&style=for-the-badge)](https://patreon.com/ForgemasterModules)
