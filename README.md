@@ -1,11 +1,12 @@
 # Fancy Compendia
 
-Fancy compendia is a semi-system agnostic module that overrides the core compendium sheets, adding more functionality and giving the sheets a visual makeover.
-
 ![Supported Foundry Versions](https://img.shields.io/endpoint?url=https://foundryshields.com/version?url=https://github.com/ForgeMastermodules/fancy-compendia/releases/latest/download/system.json&color=blue)
 ![Latest Release Download Count](https://img.shields.io/github/downloads/ForgeMastermodules/fancy-compendia/latest/fancy-compendia.zip)
 [![Forge Installs](https://img.shields.io/badge/dynamic/json?label=Forge%20Installs&query=package.installs&suffix=%25&url=https%3A%2F%2Fforge-vtt.com%2Fapi%2Fbazaar%2Fpackage%2Fa5e&colorB=brightgreen)](https://forge-vtt.com/bazaar#package=fancy-compendia)
 [![Discord](https://img.shields.io/discord/957965481455788032?label=A5e%20Foundry%20Discord)](https://discord.gg/XtkZ6RkN9E)
+
+
+Fancy compendia is a semi-system agnostic module that overrides the core compendium sheets, adding more functionality and giving the sheets a visual makeover.
 
 ## Features
 
