@@ -9,18 +9,18 @@ Fancy compendia is a semi-system agnostic module that overrides the core compend
 The module introduces a new UI for compendium sheets to make searching for documents easier. The new sheets offer two modes of viewing the pack - List mode and Grouped mode. List mode is the default mode and lists all the documents alphabetically, whereas grouped mode groups the various documents based on a predefined criteria.
 
 <!-- Image of the two modes -->
-![/imgs/list-mode.png]
-![/imgs/grouped-mode.png]
+![](/imgs/list-mode.png)
+![](/imgs/grouped-mode.png)
 
 ### Filters
 Each compendium sheet allows users to filter the documents in the pack to narrow down what they're looking for. Filtering is extremely configurable, allowing users to exclude a criteria while including others. Both exclusion and inclusion filters have configurable modes that can do either an "OR" operation or an "AND" operation.
 
-![/imgs/filter-view.png]
+![](/imgs/filter-view.png)
 
 ### RollTable
 The new sheets allow a filtered selection to be exported to a roll table ready to be used later.
 
-![/imgs/rolltable-view.png]
+![](/imgs/rolltable-view.png)
 
 ### Settings
 By default only compendia that ships with the system is assigned the new interface but this can be easily extended to other compendia. One simple way to do this is to enable the "Automatically Apply Fancy Sheets to Compendia" setting. This makes it so that the module tries to figure out what the right type of sheet is for a particular compendium pack. Do note that for this to work the compendium must contain either only one type of document or a documents of type that are registered with the auto mapping config.
