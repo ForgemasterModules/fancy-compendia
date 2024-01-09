@@ -91,7 +91,7 @@ const DND5EAdapter: SystemAdapterConfig = {
           type: 'value'
         },
         creatureTypes: {
-          key: 'system.details.type',
+          key: 'system.details.type.value',
           type: 'value'
         },
         miscellaneous: {
