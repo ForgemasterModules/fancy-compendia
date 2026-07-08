@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>JSON Name Changer Test</title>
+<style>
+  body {
+    font-family: sans-serif;
+    max-width: 500px;
+    margin: 60px auto;
+    text-align: center;
+  }
+  button, input, a {
+    margin-top: 20px;
+    display: inline-block;
+  }
+  a {
+    padding: 10px 16px;
+    background: #2563eb;
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+  }
+</style>
+</head>
+<body>
+
+<h2>JSON Name Changer</h2>
+<p>Upload a JSON file. The top-level "name" field will be changed to "Changed".</p>
+
+<input type="file" id="fileInput" accept=".json">
+<br>
+<a id="downloadLink" style="display:none">Download result</a>
+<p id="status"></p>
+
+<script>
+document.getElementById('fileInput').addEventListener('change', function(e) {
+  const file = e.target.files[0];
+  if (!file) return;
+
+  const reader = new FileReader();
+
+  reader.onload = function(event) {
+    const status = document.getElementById('status');
+    try {
+      const data = JSON.parse(event.target.result);
+
+      data.name = "Changed";
+
+      const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+
+      const link = document.getElementById('downloadLink');
+      link.href = url;
+      link.download = 'output.json';
+      link.style.display = 'inline-block';
+      link.textContent = 'Download processed file';
+
+      status.textContent = 'Done. Name field updated.';
+    } catch (err) {
+      status.textContent = 'Error: could not parse JSON file.';
+    }
+  };
+
+  reader.readAsText(file);
+});
+</script>
+
+</body>
+</html>
